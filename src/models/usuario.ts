@@ -5,7 +5,7 @@ export class Usuario implements IUsuario {
   public id: number;
   public nombre: string;
   private materialesPrestados: String[] = [];
-  // private ultimaPrestacion! = this.materialesPrestados[-1];
+  private ultimaPrestacion!: string;
 
   constructor(id: number, nombre: string) {
     this.id = id;
@@ -17,11 +17,18 @@ export class Usuario implements IUsuario {
       console.error("El material no está disponible");
     }
 
+    material.setDisponible();
+
     this.materialesPrestados.push(material.titulo);
+
+    this.ultimaPrestacion = material.titulo;
+
+    this.mostrarUltimaPrestacion();
+
   }
 
-  // mostrarUltimaPrestacion(): string {
-  //   return this.materialesPrestados[-1]
-  // }
+  mostrarUltimaPrestacion(): void {
+    console.log(`Ultima prestación de ${this.nombre}: ${this.ultimaPrestacion}`)
+  }
 
 }
