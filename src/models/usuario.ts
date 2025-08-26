@@ -15,6 +15,7 @@ export class Usuario implements IUsuario {
   prestar(material: Material): void {
     if (material.getDisponible() === false) {
       console.error("El material no está disponible");
+      return;
     }
 
     material.setDisponible();
@@ -25,6 +26,10 @@ export class Usuario implements IUsuario {
 
     this.mostrarUltimaPrestacion();
 
+  }
+
+  mostrarPrestados(): void {
+    console.log(`Materiales prestados a ${this.nombre}: ${this.materialesPrestados.join(", ")}`);
   }
 
   mostrarUltimaPrestacion(): void {
